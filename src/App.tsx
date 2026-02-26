@@ -1,15 +1,14 @@
+import { Route, Routes } from "react-router-dom";
 import "./index.css";
-import Navbar from "@/components/sections/Navbar";
-import Banner from "@/components/sections/Banner";
-import ProductCards from "@/components/ProductCards";
+import Home from "@/components/pages/Home";
+import Checkout from "./components/pages/Checkout";
 
 function App() {
   return (
-    <>
-      <Navbar />
-      <Banner />
-      <ProductCards />
-    </>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/checkout" element={<Checkout />} />
+    </Routes>
   );
 }
 
