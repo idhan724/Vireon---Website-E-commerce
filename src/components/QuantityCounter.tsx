@@ -4,51 +4,56 @@ import { Minus, Plus } from "lucide-react";
 import { Input } from "./ui/input";
 
 type QuantityCounterProps = {
+  value: number;
+  onChange: (value: number) => void;
   max?: number;
   min?: number;
 };
 
-function QuantityCounter({ max = 99, min = 1 }: QuantityCounterProps) {
-  const [quantity, setQuantity] = React.useState(1);
-
+function QuantityCounter({
+  value,
+  onChange,
+  max = 99,
+  min = 1,
+}: QuantityCounterProps) {
   const increment = () => {
-    if (quantity < max) {
-      setQuantity((prev) => prev + 1);
+    if (value < max) {
+      onChange(value + 1);
     }
   };
 
   const decrement = () => {
-    if (quantity > min) {
-      setQuantity((prev) => prev - 1);
+    if (value > min) {
+      onChange(value - 1);
     }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Number(e.target.value);
+    const NewValue = Number(e.target.value);
 
-    if (isNaN(value)) return;
+    if (isNaN(NewValue)) return;
 
-    if (value < min) {
-      setQuantity(min);
-    } else if (value > max) {
-      setQuantity(max);
+    if (NewValue < min) {
+      onChange(min);
+    } else if (NewValue > max) {
+      onChange(max);
     } else {
-      setQuantity(value);
+      onChange(NewValue);
     }
   };
   return (
     <div className="flex items-center gap-2">
-      <Button onClick={decrement} disabled={quantity <= min}>
+      <Button onClick={decrement} disabled={value <= min}>
         <Minus />
       </Button>
       <Input
-        value={quantity}
+        value={value}
         onChange={handleChange}
         min={min}
         max={max}
         className="w-12 text-center font-medium"
       />
-      <Button onClick={increment} disabled={quantity >= max}>
+      <Button onClick={increment} disabled={value >= max}>
         <Plus />
       </Button>
     </div>

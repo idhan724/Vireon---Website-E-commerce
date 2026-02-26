@@ -1,12 +1,12 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
-import CheckoutCard from "@/components/CheckoutCard";
+import CartCards from "@/components/Cart/CartCards";
 
 function Checkout() {
   return (
     <>
       <Navbar />
-      <CheckoutCard />
+      <CartCards />
     </>
   );
 }

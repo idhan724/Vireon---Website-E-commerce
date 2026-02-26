@@ -1,5 +1,5 @@
-type ProductDataProps = {
-    id: string;
+export type ProductDataProps = {
+    id: number;
     category: "Fashion" | "Tech" | "Home & Living";
     name: string;
     description: string;
@@ -11,7 +11,7 @@ type ProductDataProps = {
 
 export const productData : ProductDataProps[] = [
     {
-        id: "1",
+        id: 1,
         category: "Tech",
         name: "camera",
         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus dicta tenetur vero reiciendis ratione ducimus laudantium facilis tempore nam numquam.",
@@ -21,7 +21,7 @@ export const productData : ProductDataProps[] = [
         stock: 27,
     },
     {
-        id: "2",
+        id: 2,
         category: "Home & Living",
         name: "Meja Jam",
         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus dicta tenetur vero reiciendis ratione ducimus laudantium facilis tempore nam numquam.",
@@ -31,7 +31,7 @@ export const productData : ProductDataProps[] = [
         stock: 187,
     },
     {
-        id: "3",
+        id: 3,
         category: "Tech",
         name: "Macbook Pro",
         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus dicta tenetur vero reiciendis ratione ducimus laudantium facilis tempore nam numquam.",
@@ -41,7 +41,7 @@ export const productData : ProductDataProps[] = [
         stock: 76,
     },
     {
-        id: "4",
+        id: 4,
         category: "Home & Living",
         name: "Bingkai Foto",
         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus dicta tenetur vero reiciendis ratione ducimus laudantium facilis tempore nam numquam.",
@@ -51,7 +51,7 @@ export const productData : ProductDataProps[] = [
         stock: 76,
     },
     {
-        id: "5",
+        id: 5,
         category: "Home & Living",
         name: "Mesin Jahit",
         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus dicta tenetur vero reiciendis ratione ducimus laudantium facilis tempore nam numquam.",
@@ -61,7 +61,7 @@ export const productData : ProductDataProps[] = [
         stock: 76,
     },
     {
-        id: "6",
+        id: 6,
         category: "Fashion",
         name: "Pakaian Pria",
         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus dicta tenetur vero reiciendis ratione ducimus laudantium facilis tempore nam numquam.",
@@ -71,7 +71,7 @@ export const productData : ProductDataProps[] = [
         stock: 76,
     },
     {
-        id: "7",
+        id: 7,
         category: "Home & Living",
         name: "Peralatan Dapur",
         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus dicta tenetur vero reiciendis ratione ducimus laudantium facilis tempore nam numquam.",
@@ -81,7 +81,7 @@ export const productData : ProductDataProps[] = [
         stock: 76,
     },
     {
-        id: "8",
+        id: 8,
         category: "Fashion",
         name: "Sepatu Ungu",
         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus dicta tenetur vero reiciendis ratione ducimus laudantium facilis tempore nam numquam.",
@@ -91,7 +91,7 @@ export const productData : ProductDataProps[] = [
         stock: 76,
     },
     {
-        id: "9",
+        id: 9,
         category: "Home & Living",
         name: "sofa",
         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus dicta tenetur vero reiciendis ratione ducimus laudantium facilis tempore nam numquam.",
@@ -101,7 +101,7 @@ export const productData : ProductDataProps[] = [
         stock: 76,
     },
     {
-        id: "10",
+        id: 10,
         category: "Home & Living",
         name: "topi",
         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus dicta tenetur vero reiciendis ratione ducimus laudantium facilis tempore nam numquam.",
