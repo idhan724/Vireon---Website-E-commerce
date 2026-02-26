@@ -1,7 +1,14 @@
 import React from "react";
+import Navbar from "@/components/Navbar";
+import CheckoutCard from "@/components/CheckoutCard";
 
 function Checkout() {
-  return <div>Checkout</div>;
+  return (
+    <>
+      <Navbar />
+      <CheckoutCard />
+    </>
+  );
 }
 
 export default Checkout;

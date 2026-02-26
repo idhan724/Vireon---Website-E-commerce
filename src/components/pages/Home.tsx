@@ -1,5 +1,5 @@
-import Navbar from "@/components/sections/Navbar";
-import Banner from "@/components/sections/Banner";
+import Navbar from "@/components/Navbar";
+import Banner from "@/components/Banner";
 import ProductCards from "@/components/ProductCards";
 
 function Home() {
