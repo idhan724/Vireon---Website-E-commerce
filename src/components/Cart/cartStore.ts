@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import type { ProductDataProps } from "../Product/productData";
 
-type CartItem = ProductDataProps & {
+export type CartItem = ProductDataProps & {
     quantity: number
 }
 

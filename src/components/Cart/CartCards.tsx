@@ -1,8 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import QuantityCounter from "@/components/QuantityCounter";
-import { Trash } from "lucide-react";
 import { useCartStore } from "@/components/Cart/cartStore";
+import CartItems from "./CartItems";
 
 export default function CartCards() {
   const { cart, removeFromCart, updateQuantity } = useCartStore();
@@ -11,7 +10,7 @@ export default function CartCards() {
     (sum, item) => sum + item.price * item.quantity,
     0,
   );
-  const shipping = 20000;
+  const shipping = cart.length === 0 ? 0 : 20000;
   const total = subTotal + shipping;
 
   return (
@@ -24,39 +23,12 @@ export default function CartCards() {
         )}
 
         {cart.map((item) => (
-          <Card
+          <CartItems
+            item={item}
+            removeFromCart={removeFromCart}
+            updateQuantity={updateQuantity}
             key={item.id}
-            className="max-w-3xl mx-auto hover:shadow-md transition-all"
-          >
-            <CardContent className="flex items-center gap-4 p-4">
-              <img
-                src={item.img}
-                alt={item.alt}
-                className="w-24 h-24 rounded-xl object-cover"
-              />
-
-              <div className="space-y-2">
-                <h1 className="font-semibold">{item.name}</h1>
-                <p className="text-lg font-bold">
-                  Rp {(item.price * item.quantity).toLocaleString()}
-                </p>
-
-                <QuantityCounter
-                  value={item.quantity}
-                  onChange={(value) => updateQuantity(item.id, value)}
-                  max={99}
-                />
-              </div>
-
-              <Button
-                variant="destructive"
-                className="ml-auto"
-                onClick={() => removeFromCart(item.id)}
-              >
-                <Trash />
-              </Button>
-            </CardContent>
-          </Card>
+          />
         ))}
       </div>
 
@@ -68,17 +40,17 @@ export default function CartCards() {
         <CardContent className="space-y-4">
           <div className="flex justify-between text-sm">
             <span>Subtotal</span>
-            <span>Rp{subTotal.toLocaleString()}</span>
+            <span>Rp.{subTotal.toLocaleString()}</span>
           </div>
 
           <div className="flex justify-between text-sm">
             <span>Shipping</span>
-            <span>Rp{shipping.toLocaleString()}</span>
+            <span>Rp.{shipping.toLocaleString()}</span>
           </div>
 
           <div className="border-t pt-4 flex justify-between font-semibold text-lg">
             <span>Total</span>
-            <span>Rp{total.toLocaleString()}</span>
+            <span>Rp.{total.toLocaleString()}</span>
           </div>
 
           <Button className="w-full mt-4">Proceed to Payment</Button>
