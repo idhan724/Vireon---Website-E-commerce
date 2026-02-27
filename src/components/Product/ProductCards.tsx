@@ -3,7 +3,11 @@ import * as React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ProductItem from "@/components/Product/ProductItem";
 
-function ProductCards() {
+type ProductCardsProps = {
+  search: string;
+};
+
+function ProductCards({ search }: ProductCardsProps) {
   type FilterProps = "all" | "tech" | "fashion" | "home & living";
   const [filter, setFilter] = React.useState<FilterProps>("all");
 
@@ -14,8 +18,14 @@ function ProductCards() {
       data = data.filter((i) => i.category.toLowerCase() === filter);
     }
 
+    if (search.trim() !== "") {
+      data = data.filter((i) =>
+        i.name.toLowerCase().includes(search.toLowerCase()),
+      );
+    }
+
     return data;
-  }, [filter]);
+  }, [search, filter]);
   return (
     <Tabs
       defaultValue="all"

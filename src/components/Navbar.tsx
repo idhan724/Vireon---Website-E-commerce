@@ -4,8 +4,14 @@ import { Input } from "@/components/ui/input";
 import { Search, ShoppingCart } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 import { Link, useLocation } from "react-router-dom";
+import * as React from "react";
 
-function Navbar() {
+type NavbarProps = {
+  search: string;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
+};
+
+function Navbar({ search, setSearch }: NavbarProps) {
   const location = useLocation();
 
   const isCheckoutPage = location.pathname === "/checkout";
@@ -19,7 +25,12 @@ function Navbar() {
 
           {!isCheckoutPage && (
             <Field orientation="horizontal" className="max-w-3xl">
-              <Input type="search" placeholder="Search..." />
+              <Input
+                type="search"
+                placeholder="Cari Produk..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
               <Button>
                 <Search />
               </Button>
