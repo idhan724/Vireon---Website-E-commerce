@@ -2,14 +2,12 @@ import { productData } from "@/components/Product/productData";
 import * as React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ProductItem from "@/components/Product/ProductItem";
+import { useSearchStore } from "@/store/searchStore";
 
-type ProductCardsProps = {
-  search: string;
-};
-
-function ProductCards({ search }: ProductCardsProps) {
+function ProductCards() {
   type FilterProps = "all" | "tech" | "fashion" | "home & living";
   const [filter, setFilter] = React.useState<FilterProps>("all");
+  const search = useSearchStore((state) => state.search);
 
   const filteredProductData = React.useMemo(() => {
     let data = [...productData];

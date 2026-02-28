@@ -1,8 +1,9 @@
 import { create } from "zustand";
-import type { ProductDataProps } from "../Product/productData";
+import type { ProductDataProps } from "../components/Product/productData";
 
 export type CartItem = ProductDataProps & {
     quantity: number
+    selected:boolean
 }
 
 type CartStore = {
@@ -10,6 +11,8 @@ type CartStore = {
     addToCart: (product: ProductDataProps, quantity:number) => void;
     removeFromCart: (id:number) => void
     updateQuantity: (id:number, quantity:number) => void
+    toggleSelected: (id:number) => void
+    toggleSelectAll: () => void
 }
 
 export const useCartStore = create<CartStore>((set) => ({
@@ -23,7 +26,7 @@ export const useCartStore = create<CartStore>((set) => ({
             }
         }
         return {
-            cart: [...state.cart, {...product, quantity}]
+            cart: [...state.cart, {...product, quantity, selected:false}]
         }
     }),
     removeFromCart: (id) => set((state) => ({
@@ -31,6 +34,16 @@ export const useCartStore = create<CartStore>((set) => ({
     })),
     updateQuantity: (id, quantity) => set((state) => ({
         cart: state.cart.map((item) => item.id === id ? {...item, quantity} : item)
-    }))
+    })),
+    toggleSelected: (id) => set((state) => ({
+        cart: state.cart.map((item) => item.id === id ? {...item, selected: !item.selected} : item)
+    })),
+    toggleSelectAll:() => set((state) => {
+        const allSelected = state.cart.length > 0 && state.cart.every((item) => item.selected)
+
+        return {
+            cart: state.cart.map((item) => ({...item, selected: !allSelected}))
+        }
+    })
 
 }))

@@ -1,16 +1,23 @@
-import { type CartItem } from "@/components/Cart/cartStore";
+import { type CartItem } from "@/store/cartStore";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import QuantityCounter from "@/components/QuantityCounter";
 import { Trash } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
 
 type CartItemProps = {
   item: CartItem;
   removeFromCart: (id: number) => void;
   updateQuantity: (id: number, quantity: number) => void;
+  toggleSelected: (id: number) => void;
 };
 
-function CartItems({ item, removeFromCart, updateQuantity }: CartItemProps) {
+function CartItems({
+  item,
+  removeFromCart,
+  updateQuantity,
+  toggleSelected,
+}: CartItemProps) {
   return (
     <Card
       key={item.id}
@@ -43,6 +50,11 @@ function CartItems({ item, removeFromCart, updateQuantity }: CartItemProps) {
         >
           <Trash />
         </Button>
+
+        <Checkbox
+          checked={item.selected}
+          onCheckedChange={() => toggleSelected(item.id)}
+        />
       </CardContent>
     </Card>
   );

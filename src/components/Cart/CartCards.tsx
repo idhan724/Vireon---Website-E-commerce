@@ -1,16 +1,20 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useCartStore } from "@/components/Cart/cartStore";
-import CartItems from "./CartItems";
+import { useCartStore } from "@/store/cartStore";
+import CartItems from "@/components/Cart/CartItems";
+import SelectAllCheckbox from "@/components/SelectAllCheckbox";
 
 export default function CartCards() {
-  const { cart, removeFromCart, updateQuantity } = useCartStore();
+  const { cart, removeFromCart, updateQuantity, toggleSelected } =
+    useCartStore();
 
-  const subTotal = cart.reduce(
+  const selectedItems = cart.filter((item) => item.selected);
+
+  const subTotal = selectedItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0,
   );
-  const shipping = cart.length === 0 ? 0 : 20000;
+  const shipping = cart.length === 0 || subTotal === 0 ? 0 : subTotal * 0.03;
   const total = subTotal + shipping;
 
   return (
@@ -22,11 +26,13 @@ export default function CartCards() {
           </p>
         )}
 
+        <SelectAllCheckbox />
         {cart.map((item) => (
           <CartItems
             item={item}
             removeFromCart={removeFromCart}
             updateQuantity={updateQuantity}
+            toggleSelected={toggleSelected}
             key={item.id}
           />
         ))}

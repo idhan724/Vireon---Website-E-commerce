@@ -16,7 +16,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import * as React from "react";
-import { useCartStore } from "@/components/Cart/cartStore";
+import { useCartStore } from "@/store/cartStore";
 import type { ProductDataProps } from "@/components/Product/productData";
 
 type ProductItemProps = {

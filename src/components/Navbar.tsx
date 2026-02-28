@@ -4,14 +4,10 @@ import { Input } from "@/components/ui/input";
 import { Search, ShoppingCart } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 import { Link, useLocation } from "react-router-dom";
-import * as React from "react";
+import { useSearchStore } from "@/store/searchStore";
 
-type NavbarProps = {
-  search: string;
-  setSearch: React.Dispatch<React.SetStateAction<string>>;
-};
-
-function Navbar({ search, setSearch }: NavbarProps) {
+function Navbar() {
+  const { search, setSearch } = useSearchStore();
   const location = useLocation();
 
   const isCheckoutPage = location.pathname === "/checkout";
