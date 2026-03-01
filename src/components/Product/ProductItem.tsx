@@ -25,6 +25,7 @@ type ProductItemProps = {
 
 function ProductItem({ item }: ProductItemProps) {
   const [quantity, setQuantity] = React.useState(1);
+  const [showMessage, setShowMessage] = React.useState(false);
   const addToCart = useCartStore((state) => state.addToCart);
   const formatRupiah = (value: number) => {
     return new Intl.NumberFormat("id-ID", {
@@ -34,6 +35,11 @@ function ProductItem({ item }: ProductItemProps) {
   };
   const handleAdd = () => {
     addToCart(item, quantity);
+
+    setShowMessage(true);
+    setTimeout(() => {
+      setShowMessage(false);
+    }, 2000);
   };
   return (
     <Card className="@container/card">
@@ -50,12 +56,17 @@ function ProductItem({ item }: ProductItemProps) {
         <CardTitle>{formatRupiah(item.price)}</CardTitle>
         <CardDescription>Quantity: {item.stock}</CardDescription>
       </CardContent>
-      <CardFooter className="justify-between">
+      <CardFooter className="relative justify-between">
         <QuantityCounter
           value={quantity}
           onChange={setQuantity}
           max={item.stock}
         />
+        {showMessage && (
+          <p className="absolute -bottom-8 right-12 translate-x-1/4 text-sm bg-green-600 text-white font-medium px-2 py-1 rounded-3xl">
+            Ditambahkan Ke keranjang
+          </p>
+        )}
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger>
