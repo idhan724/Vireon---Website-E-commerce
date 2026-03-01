@@ -21,13 +21,17 @@ function CartItems({
   return (
     <Card
       key={item.id}
-      className="max-w-3xl mx-auto hover:shadow-md transition-all"
+      className={`max-w-3xl mx-auto transition-all duration-300 ${item.selected ? "border-primary ring-2 ring-primary/40 bg-primary/5 shadow-lg" : "hover:shadow-md"}`}
     >
       <CardContent className="flex items-center gap-4 p-4">
+        <Checkbox
+          checked={item.selected}
+          onCheckedChange={() => toggleSelected(item.id)}
+        />
         <img
           src={item.img}
           alt={item.alt}
-          className="w-24 h-24 rounded-xl object-cover"
+          className="w-24 h-24 rounded-xl object-contain object-center"
         />
 
         <div className="space-y-2">
@@ -50,11 +54,6 @@ function CartItems({
         >
           <Trash />
         </Button>
-
-        <Checkbox
-          checked={item.selected}
-          onCheckedChange={() => toggleSelected(item.id)}
-        />
       </CardContent>
     </Card>
   );

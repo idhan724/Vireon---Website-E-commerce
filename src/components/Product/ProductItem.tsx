@@ -40,7 +40,7 @@ function ProductItem({ item }: ProductItemProps) {
       <img
         src={item.img}
         alt={item.alt}
-        className="z-20 aspect-video w-full object-cover object-center"
+        className="z-20 aspect-video w-full object-contain"
       />
       <CardHeader>
         <CardTitle>{item.name}</CardTitle>
