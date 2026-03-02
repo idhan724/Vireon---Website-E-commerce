@@ -1,26 +1,19 @@
-import { type CartItem } from "@/store/cartStore";
+import { useCartStore, type CartItem } from "@/store/cartStore";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import QuantityCounter from "@/components/QuantityCounter";
 import { Trash } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
+import { formatRupiah } from "@/lib/formatRupiah";
 
-type CartItemProps = {
+type CartItemsProps = {
   item: CartItem;
-  removeFromCart: (id: number) => void;
-  updateQuantity: (id: number, quantity: number) => void;
-  toggleSelected: (id: number) => void;
 };
 
-function CartItems({
-  item,
-  removeFromCart,
-  updateQuantity,
-  toggleSelected,
-}: CartItemProps) {
+function CartItems({ item }: CartItemsProps) {
+  const { toggleSelected, updateQuantity, removeFromCart } = useCartStore();
   return (
     <Card
-      key={item.id}
       className={`max-w-3xl mx-auto transition-all duration-300 ${item.selected ? "border-primary ring-2 ring-primary/40 bg-primary/5 shadow-lg" : "hover:shadow-md"}`}
     >
       <CardContent className="flex items-center gap-4 p-4">
@@ -35,9 +28,9 @@ function CartItems({
         />
 
         <div className="space-y-2">
-          <h1 className="font-semibold">{item.name}</h1>
+          <h2 className="font-semibold">{item.name}</h2>
           <p className="text-lg font-bold">
-            Rp {(item.price * item.quantity).toLocaleString()}
+            {formatRupiah(item.price * item.quantity)}
           </p>
 
           <QuantityCounter
@@ -51,6 +44,7 @@ function CartItems({
           variant="destructive"
           className="ml-auto"
           onClick={() => removeFromCart(item.id)}
+          aria-label="Remove item from cart"
         >
           <Trash />
         </Button>

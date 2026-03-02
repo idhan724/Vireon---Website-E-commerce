@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import {persist} from "zustand/middleware"
 import type { ProductDataProps } from "../components/Product/productData";
 
 export type CartItem = ProductDataProps & {
@@ -15,7 +16,8 @@ type CartStore = {
     toggleSelectAll: () => void
 }
 
-export const useCartStore = create<CartStore>((set) => ({
+export const useCartStore = create<CartStore>()(
+    persist((set) => ({
     cart: [],
     addToCart: (product, quantity) => set((state) => {
         const existing = state.cart.find((i) => i.id === product.id);
@@ -46,4 +48,10 @@ export const useCartStore = create<CartStore>((set) => ({
         }
     })
 
-}))
+}), {
+    name:"cart-storage",
+    partialize: (state) => ({
+        cart: state.cart
+    })
+})
+)

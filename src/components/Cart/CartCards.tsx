@@ -5,8 +5,8 @@ import CartItems from "@/components/Cart/CartItems";
 import SelectAllCheckbox from "@/components/SelectAllCheckbox";
 
 export default function CartCards() {
-  const { cart, removeFromCart, updateQuantity, toggleSelected } =
-    useCartStore();
+  const cart = useCartStore((state) => state.cart);
+  useCartStore();
 
   const selectedItems = cart.filter((item) => item.selected);
 
@@ -28,13 +28,7 @@ export default function CartCards() {
 
         <SelectAllCheckbox />
         {cart.map((item) => (
-          <CartItems
-            item={item}
-            removeFromCart={removeFromCart}
-            updateQuantity={updateQuantity}
-            toggleSelected={toggleSelected}
-            key={item.id}
-          />
+          <CartItems item={item} key={item.id} />
         ))}
       </div>
 

@@ -5,32 +5,42 @@ import { Search, ShoppingCart } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 import { Link, useLocation } from "react-router-dom";
 import { useSearchStore } from "@/store/searchStore";
+import * as React from "react";
 
 function Navbar() {
-  const { search, setSearch } = useSearchStore();
+  const [input, setInput] = React.useState("");
+  const { setSearch } = useSearchStore();
   const location = useLocation();
 
   const isCheckoutPage = location.pathname === "/checkout";
   return (
     <nav className="fixed top-0 left-0 w-full z-50">
-      <div className="backdrop-blur-md bg-white/5 border-b border-white/10">
+      <div className="bg-background">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <a href="/" className="text-2xl font-semibold text-blue-400">
             Vireon
           </a>
 
           {!isCheckoutPage && (
-            <Field orientation="horizontal" className="max-w-3xl">
-              <Input
-                type="search"
-                placeholder="Cari Produk..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-              <Button>
-                <Search />
-              </Button>
-            </Field>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                setSearch(input);
+              }}
+              className="w-full"
+            >
+              <Field orientation="horizontal" className="max-w-3xl mx-auto">
+                <Input
+                  type="search"
+                  placeholder="Cari Produk..."
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                />
+                <Button type="submit">
+                  <Search />
+                </Button>
+              </Field>
+            </form>
           )}
 
           <div className="flex gap-3 items-center">

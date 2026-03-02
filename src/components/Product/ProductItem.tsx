@@ -18,6 +18,7 @@ import {
 import * as React from "react";
 import { useCartStore } from "@/store/cartStore";
 import type { ProductDataProps } from "@/components/Product/productData";
+import { formatRupiah } from "@/lib/formatRupiah";
 
 type ProductItemProps = {
   item: ProductDataProps;
@@ -27,12 +28,7 @@ function ProductItem({ item }: ProductItemProps) {
   const [quantity, setQuantity] = React.useState(1);
   const [showMessage, setShowMessage] = React.useState(false);
   const addToCart = useCartStore((state) => state.addToCart);
-  const formatRupiah = (value: number) => {
-    return new Intl.NumberFormat("id-ID", {
-      style: "currency",
-      currency: "IDR",
-    }).format(value);
-  };
+
   const handleAdd = () => {
     addToCart(item, quantity);
 
@@ -46,6 +42,7 @@ function ProductItem({ item }: ProductItemProps) {
       <img
         src={item.img}
         alt={item.alt}
+        loading="lazy"
         className="z-20 aspect-video w-full object-contain"
       />
       <CardHeader>
@@ -70,7 +67,11 @@ function ProductItem({ item }: ProductItemProps) {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger>
-              <Button onClick={handleAdd} disabled={item.stock === 0}>
+              <Button
+                onClick={handleAdd}
+                disabled={item.stock === 0}
+                aria-label="Add to Cart"
+              >
                 <div className="relative">
                   <ShoppingCart className="w-5 h-5" />
                   <Plus className="w-3 h-3 absolute -top-1.5 -right-2 bg-background rounded-full" />
