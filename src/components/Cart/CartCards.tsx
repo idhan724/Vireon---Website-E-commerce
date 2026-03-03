@@ -18,8 +18,8 @@ export default function CartCards() {
   const total = subTotal + shipping;
 
   return (
-    <div className="grid grid-cols-3 max-w-7xl mx-auto my-25 items-start">
-      <div className="space-y-3 col-span-2">
+    <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 max-w-7xl mx-auto px-3 my-25 items-start gap-5">
+      <div className="space-y-3 md:col-span-2">
         {cart.length === 0 && (
           <p className="text-center text-muted-foreground">
             Keranjang Masih Kosong
@@ -31,8 +31,7 @@ export default function CartCards() {
           <CartItems item={item} key={item.id} />
         ))}
       </div>
-
-      <Card className="w-full max-w-md shadow-lg col-span-1">
+      <Card className="w-full shadow-lg md:col-span-1">
         <CardHeader>
           <CardTitle className="text-xl">Order Summary</CardTitle>
         </CardHeader>

@@ -29,7 +29,10 @@ function Navbar() {
               }}
               className="w-full"
             >
-              <Field orientation="horizontal" className="max-w-3xl mx-auto">
+              <Field
+                orientation="horizontal"
+                className="max-w-md lg:max-w-3xl mx-auto hidden md:flex"
+              >
                 <Input
                   type="search"
                   placeholder="Cari Produk..."

@@ -28,7 +28,7 @@ function ProductCards() {
     <Tabs
       defaultValue="all"
       onValueChange={(val) => setFilter(val as FilterProps)}
-      className="w-full"
+      className="w-full my-25"
     >
       <TabsList className="mx-6">
         <TabsTrigger value="all">Lihat Semua</TabsTrigger>
