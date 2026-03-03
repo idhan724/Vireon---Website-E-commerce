@@ -5,6 +5,8 @@ Project ini menampilkan fitur daftar produk, filter kategori, pencarian produk, 
 
 ## Live Demo
 
+- https://vireon-website-e-commerce.vercel.app/
+
 ## 🚀 Fitur Utama
 
 - ✅ Menampilkan daftar produk berdasarkan kategori (Tech, Fashion, Home & Living, dll)
